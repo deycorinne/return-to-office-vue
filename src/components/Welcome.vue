@@ -22,8 +22,21 @@
 
   <div id="selected" v-if="!welcome">
 
-    <p class="font-semibold text-xl">
+    <p class="font-semibold text-3xl">
     {{ selected.name }}
+    </p>    
+    
+    <p class="font-semibold text-xl">
+    positiveIncrease {{ selected.positiveIncrease }}
+    </p>
+    <p class="font-semibold text-xl">
+    positiveCasesViral {{ selected.positiveCasesViral }}
+    </p>
+    <p class="font-semibold text-xl">
+    deathIncrease {{ selected.deathIncrease }}
+    </p>
+    <p class="font-semibold text-xl">
+    lasteUpdateEt {{ selected.lastUpdateEt }}
     </p>
 
     <button v-on:click="reset" 
@@ -63,7 +76,11 @@ export default {
             id: 'VA' ,
             barrier_states: [
                 "VA"
-            ]
+            ],
+            positiveIncrease: 0,
+            positiveCasesViral: 0,
+            deathIncrease: 0,
+            lastUpdateEt: 0
           }
       ]
     }
@@ -72,7 +89,11 @@ export default {
     selectState(state) {
       this.selected = state;
       this.welcome = false;
-      this.getCovidData(state.id.toLowerCase());
+      state.barrier_states.forEach(state => {
+
+        this.getCovidData(state.toLowerCase());
+
+      });
     },
     reset(event) {
         this.welcome = true;
@@ -82,10 +103,16 @@ export default {
       const url = `https://api.covidtracking.com/v1/states/${id}/current.json`;
       console.log(url);
       axios.get(url)
-        .then(function (response) {
+        .then( (response) => {
           console.log(response.data);
+          this.selected.positiveIncrease = response.data.positiveIncrease;
+          this.selected.positiveCasesViral = response.data.positiveCasesViral;
+          this.selected.deathIncrease = response.data.deathIncrease;
+          this.selected.lastUpdateEt = response.data.lastUpdateEt;
+
+          console.log(this.selected);
         })
-        .catch(function (error) {
+        .catch( (error)  => {
           console.log(error);
         });
     }
