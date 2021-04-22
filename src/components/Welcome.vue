@@ -9,7 +9,7 @@
       Please select your state:
     </p>
 
-    <li v-for="state in states" class="list-none">
+    <li v-for="state in states" class="list-none" :key="state.id">
         <button v-on:click="selectState(state)" 
                 class="bg-white hover:bg-gray-100 text-gray-800 
                       font-semibold py-2 px-4 border border-gray-400 
@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -71,10 +72,22 @@ export default {
     selectState(state) {
       this.selected = state;
       this.welcome = false;
+      this.getCovidData(state.id.toLowerCase());
     },
     reset(event) {
         this.welcome = true;
         this.selected = null;
+    },
+    getCovidData(id) {
+      const url = `https://api.covidtracking.com/v1/states/${id}/current.json`;
+      console.log(url);
+      axios.get(url)
+        .then(function (response) {
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   }
 }
