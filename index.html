@@ -1,77 +1,13 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Return to Office</title>
-  <script src="https://unpkg.com/vue"></script>
-</head>
-<body>
-  <div id="app">
-      <div id="welcome" v-if="welcome">
-
-        {{ message }}
-
-        <li v-for="state in states">
-            <button v-on:click="selectState(state)">
-                {{ state.name }}
-            </button>
-        </li>
-
-      </div>
-
-
-      <div id="selected" v-if="!welcome">
-
-        {{ selected.name }}
-
-        <button v-on:click="reset">
-            Reset
-        </button>
-
-      </div>
-  </div>
-
-  <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        message: 'Welcome!',
-        welcome: true,
-        selected: null,
-        states: [
-            { 
-                name: 'MD',
-                id: 'MD',
-                barrier_states: [
-                    "MD", "DC", "VA"
-                ]
-            },
-            { 
-                name: 'DC',
-                id: 'DC',
-                barrier_states: [
-                    "DC", "VA"
-                ]
-            },
-            { 
-                name: 'VA',
-                id: 'VA' ,
-                barrier_states: [
-                    "VA"
-                ]
-            }
-        ]
-      },
-      methods: {
-          selectState: function(state) {
-            this.selected = state;
-            this.welcome = false;
-          },
-          reset: function(event) {
-              this.welcome = true;
-              this.selected = null;
-          }
-      }
-    })
-  </script>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>

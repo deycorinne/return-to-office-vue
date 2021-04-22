@@ -1,26 +1,20 @@
 {
-  "name": "return-to-office-vue",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "return-to-office",
+  "version": "0.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "serve"
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/deycorinne/return-to-office-vue.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/deycorinne/return-to-office-vue/issues"
-  },
-  "homepage": "https://github.com/deycorinne/return-to-office-vue#readme",
   "dependencies": {
-    "vue": "^2.6.12"
+    "vue": "^3.0.5"
   },
   "devDependencies": {
-    "serve": "^11.2.0"
+    "@vitejs/plugin-vue": "^1.2.1",
+    "@vue/compiler-sfc": "^3.0.5",
+    "autoprefixer": "^10.2.5",
+    "postcss": "^8.2.12",
+    "tailwindcss": "^2.1.1",
+    "vite": "^2.1.5"
   }
 }
