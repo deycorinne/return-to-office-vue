@@ -57,23 +57,19 @@
           {{ state.name }}
         </p> 
 
-        <p class="font-semibold text-xl">
-          In the last day...
+        <p class="font-semibold text-lg" v-show="state.positiveIncrease">
+          There have been {{ state.positiveIncrease }} more cases in this state in the last 24 hours.
         </p>
 
-        <p class="font-semibold text-lg">
-          There have been {{ state.positiveIncrease }} more cases in this state.
+        <p class="font-semibold text-lg" v-show="state.deathIncrease">
+          There have been {{ state.deathIncrease }} more deaths in this state in the last 24 hours.
         </p>
 
-        <p class="font-semibold text-lg">
-          There have been {{ state.deathIncrease }} more deaths in this state.
-        </p>
-
-        <p class="font-bold text-xl">
+        <p class="font-bold text-xl" v-show="state.positiveCasesViral">
           There are currently {{ state.positiveCasesViral }} positive viral cases in this state.
         </p>
 
-        <p class="font-semibold text-sm">
+        <p class="font-semibold text-sm" v-show="state.lastUpdateEt">
           This data was last updated at {{ state.lastUpdateEt }}.
         </p>
 
@@ -198,7 +194,7 @@ button {
     margin: 15px;
 }
 
-p {
+p, div {
     margin: 15px;
 }
 
